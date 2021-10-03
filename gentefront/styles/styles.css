@@ -1,6 +1,7 @@
 .main {
   background-color: #e5e7eb;
 }
+
 .colorNav {
   background-color: #2f3337;
 }
@@ -64,4 +65,16 @@
   top: -70px;
   left: 80px;
   background: #26b4ff;
+}
+
+.formContenedor {
+  height: 800px;
+  width: 800px;
+  background-color: white;
+}
+
+.contenedor {
+  height: 1000px;
+  width: 1000px;
+  background-color: #e5e7eb;
 }

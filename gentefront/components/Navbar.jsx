@@ -80,7 +80,7 @@ export const Navbar = () => {
             </Link>
             <Link href="/">
               <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white text-2xl items-center justify-center hover:bg-yellow-600 hover:text-white">
-                <i class="fas fa-circle mr-4 fa-3x text-gray-500"></i> Usuario
+                <i class="fas fa-circle mr-4 fa-2x text-gray-500"></i> Usuario
                 <i class="fas fa-chevron-down ml-4"></i>
               </a>
             </Link>
