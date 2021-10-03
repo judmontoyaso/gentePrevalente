@@ -71,10 +71,22 @@
   height: 800px;
   width: 800px;
   background-color: white;
+  margin-bottom: 50px;
+}
+.contenedorLogoEmpresa {
+  height: 250px;
+  width: 250px;
+  background-color: #e5e7eb;
+
+  margin-bottom: 50px;
 }
 
 .contenedor {
-  height: 1000px;
-  width: 1000px;
+  display: flex;
   background-color: #e5e7eb;
+  margin-bottom: 50px;
+}
+
+.botonesControl {
+  margin-bottom: 50px;
 }
