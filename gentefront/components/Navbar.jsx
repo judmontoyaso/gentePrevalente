@@ -43,7 +43,7 @@ export const Navbar = () => {
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeWidth={2}
+              strokeWidth={3}
               d="M4 6h16M4 12h16M4 18h16"
             />
           </svg>

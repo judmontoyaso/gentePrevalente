@@ -13,7 +13,7 @@ export default function Home() {
             </h1>
 
             <ul className="ulista">
-              <Link href="/AprobacionEmpresas">
+              <Link href="/reponsive">
                 <a>
                   <Cards
                     nombreEmpresa="Solicitud de creacion de empresas"

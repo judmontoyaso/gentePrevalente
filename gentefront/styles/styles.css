@@ -69,7 +69,7 @@
 
 .formContenedor {
   height: 800px;
-  width: 800px;
+  width: 1200px;
   background-color: white;
   margin-bottom: 50px;
 }
@@ -77,8 +77,10 @@
   height: 250px;
   width: 250px;
   background-color: #e5e7eb;
-
-  margin-bottom: 50px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  position: relative;
+  top: -80px;
 }
 
 .contenedor {
@@ -86,7 +88,44 @@
   background-color: #e5e7eb;
   margin-bottom: 50px;
 }
+.contenedorDatos {
+  height: 600px;
+  width: 800px;
+  background-color: white;
+}
 
 .botonesControl {
   margin-bottom: 50px;
+}
+
+.clip {
+  background-color: white;
+  -webkit-box-shadow: 0 4px 6px -3px rgb(61, 60, 60);
+  -moz-box-shadow: 0 4px 6px -3px rgb(61, 60, 60);
+  box-shadow: 0 4px 6px -3px rgb(61, 60, 60);
+}
+
+.clipp {
+  color: #26b4ff;
+}
+
+.botonesGestion {
+  width: 220px;
+  height: 50px;
+  border-radius: 16px;
+
+  background-color: white;
+  -webkit-box-shadow: 0 4px 6px -3px rgb(61, 60, 60);
+  -moz-box-shadow: 0 4px 6px -3px rgb(61, 60, 60);
+  box-shadow: 0 4px 6px -3px rgb(61, 60, 60);
+}
+
+.gestionar {
+  position: relative;
+  top: 80px;
+  left: 650px;
+}
+
+.check {
+  color: #14cf10;
 }
