@@ -1,0 +1,67 @@
+.main {
+  background-color: #e5e7eb;
+}
+.colorNav {
+  background-color: #2f3337;
+}
+
+.breedCard {
+  margin: 50px;
+  background-color: white;
+  border-radius: 20px;
+  -webkit-box-shadow: 0 4px 6px -3px rgb(61, 60, 60);
+  -moz-box-shadow: 0 4px 6px -3px rgb(61, 60, 60);
+  box-shadow: 0 4px 6px -3px rgb(61, 60, 60);
+}
+
+.contenedorImagen {
+  height: 450px;
+  display: flex;
+  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.contenedorImagen:hover {
+  cursor: pointer;
+}
+
+.tituloCard {
+  color: #424242;
+}
+
+.barra {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 10px;
+  margin-left: 10px;
+
+  padding: 50px;
+
+  border-top: 1px #cbcedd solid;
+}
+
+.clock {
+  size: 5x;
+}
+
+.ulista {
+  margin-top: 150px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  padding-left: 80px;
+  padding-right: 80px;
+}
+
+@media screen and (max-width: 1080px) {
+  .ulista {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
+
+.cuadro {
+  position: relative;
+  top: -70px;
+  left: 80px;
+  background: #26b4ff;
+}

@@ -17,11 +17,11 @@ export const Navbar = () => {
     <>
       {/* navbar */}
 
-      <nav className="flex items-center flex-wrap bg-gray-800 p-3 ">
+      <nav className="flex items-center p-3 colorNav">
         <Link href="/">
           {/* logo*/}
-          <a className="inline-flex items-center p-1 mr-4 ">
-            <Image src={logo} alt="logo" />
+          <a className="inline-flex items-center p-1 pl-10 mr-4 ">
+            <Image src={logo} alt="logo" width={80} height={80} />
             <span className="text-xl text-white font-bold uppercase tracking-wide">
               Gente Prevalente
             </span>
@@ -80,7 +80,7 @@ export const Navbar = () => {
             </Link>
             <Link href="/">
               <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white text-2xl items-center justify-center hover:bg-yellow-600 hover:text-white">
-                <i class="fas fa-circle mr-4"></i> Usuario
+                <i class="fas fa-circle mr-4 fa-3x text-gray-500"></i> Usuario
                 <i class="fas fa-chevron-down ml-4"></i>
               </a>
             </Link>
