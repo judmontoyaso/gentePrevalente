@@ -1,6 +1,8 @@
 import { Cards } from "components/Cards";
 import Link from "next/link";
 import { Layout } from "components/Layout";
+import Modals from "components/Modals";
+
 
 export default function Home() {
   return (
@@ -40,6 +42,14 @@ export default function Home() {
             </ul>
           </section>
         </div>
+
+
+        
+      
+
+
+
+
       </Layout>
     </div>
   );

@@ -136,3 +136,13 @@
 .check {
   color: #14cf10;
 }
+
+.clipAdobe {
+  position: relative;
+  top: -110px;
+  right: -420px;
+  background-color: white;
+  -webkit-box-shadow: 0 4px 6px -3px rgb(61, 60, 60);
+  -moz-box-shadow: 0 4px 6px -3px rgb(61, 60, 60);
+  box-shadow: 0 4px 6px -3px rgb(61, 60, 60);
+}
