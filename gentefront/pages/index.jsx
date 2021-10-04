@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div>
       <Layout>
-        <div>
+        <div >
           <section>
             <h1 className="text-center text-3xl font-bold text-gray-700">
               Gente Prevalente
