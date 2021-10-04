@@ -29,7 +29,7 @@ const DesktopComponent = () => (
                   <span className="flex font-black ml-1">Aprobar Empresa</span>
                 </section>
                 <section className=" flex border-solid m-10 mt-3  border-1 border-gray-500 rounded-lg  p-2 cursor-pointer botonesGestion">
-                  <i class="fas fa-times-circle text-red-600 fa-2x ml-1"></i>{" "}
+                  <i className="fas fa-times-circle text-red-600 fa-2x ml-1"></i>{" "}
                   <span className="flex font-black ml-1">Rechazar Empresa</span>
                 </section>
               </section>
@@ -42,25 +42,25 @@ const DesktopComponent = () => (
                   <label className="text-gray-600 m-9">
                     Nombre de la empresa
                   </label>
-                  <input className="border-solid m-10 mt-3 border-b-2 border-gray-500"></input>
+                  <input className="border-opacity-50 m-10 mt-3 border-b-2 border-gray-500"></input>
                 </section>
                 <section>
                   <label className="text-gray-600 m-9">Razón social</label>
-                  <input className="border-solid m-10 mt-3  border-b-2 border-gray-500"></input>
+                  <input className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500"></input>
                 </section>
                 <section>
                   <label className="text-gray-600 m-9">
                     Tipo de identificación
                   </label>
-                  <input className="border-solid m-10 mt-3  border-b-2 border-gray-500"></input>
+                  <input className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500"></input>
                 </section>
                 <section>
                   <label className="text-gray-600 m-9">Identificación</label>
-                  <input className="border-solid m-10 mt-3  border-b-2 border-gray-500"></input>
+                  <input className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500"></input>
                 </section>
                 <section>
                   <label className="text-gray-600 m-9"># de empleados</label>
-                  <input className="border-solid m-10 mt-3  border-b-2 border-gray-500"></input>
+                  <input className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500"></input>
                 </section>
               </section>
             </form>
@@ -69,7 +69,7 @@ const DesktopComponent = () => (
         </section>
 
         <section className="botonesControl m-auto">
-          <i class="fas fa-chevron-circle-left text-gray-500 fa-2x"></i>
+          <i className="fas fa-chevron-circle-left text-gray-500 fa-2x"></i>
 
           <span className="text-gray-500 p-8 text-2xl">
             {" "}

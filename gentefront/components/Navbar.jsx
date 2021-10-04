@@ -59,29 +59,29 @@ export const Navbar = () => {
           <div className="lg:inline-flex lg:flex-row lg:inset-10  w-full lg:items-center items-start  flex flex-col lg:h-auto justify-between">
             <Link href="/">
               <a className="lg:inline-flex lg:w-auto w-full px-3   py-2 rounded text-white text-2xl  items-center justify-center hover:bg-yellow-600 hover:text-white ">
-                <i class="fas fa-search mr-4"></i>Buscar
+                <i className="fas fa-search mr-4"></i>Buscar
               </a>
             </Link>
             <Link href="/">
               <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white text-2xl  items-center justify-center hover:bg-yellow-600 hover:text-white">
-                <i class="fas fa-cogs mr-4"></i>Administracion
+                <i className="fas fa-cogs mr-4"></i>Administracion
               </a>
             </Link>
             <Link href="/">
               <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white text-2xl  items-center justify-center hover:bg-yellow-600 hover:text-white">
-                <i class="fas fa-suitcase mr-4"></i>Empleo
-                <i class="fas fa-chevron-down ml-4"></i>
+                <i className="fas fa-suitcase mr-4"></i>Empleo
+                <i className="fas fa-chevron-down ml-4"></i>
               </a>
             </Link>
             <Link href="/">
               <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white text-2xl  items-center justify-center hover:bg-yellow-600 hover:text-white">
-                <i class="fas fa-clipboard-list mr-4"></i> Mi CV
+                <i className="fas fa-clipboard-list mr-4"></i> Mi CV
               </a>
             </Link>
             <Link href="/">
               <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white text-2xl items-center justify-center hover:bg-yellow-600 hover:text-white">
-                <i class="fas fa-circle mr-4 fa-2x text-gray-500"></i> Usuario
-                <i class="fas fa-chevron-down ml-4"></i>
+                <i className="fas fa-circle mr-4 fa-2x text-gray-500"></i> Usuario
+                <i className="fas fa-chevron-down ml-4"></i>
               </a>
             </Link>
           </div>

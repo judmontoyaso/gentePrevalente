@@ -12,8 +12,10 @@
     "prod:build": "NODE_ENV=production yarn run build:css && yarn run build"
   },
   "dependencies": {
+    "@apollo/client": "^3.4.15",
     "autoprefixer": "^10.3.6",
     "next": "11.1.2",
+    "node-fetch": "^3.0.0",
     "postcss": "^8.3.8",
     "postcss-cli": "^9.0.1",
     "react": "17.0.2",
