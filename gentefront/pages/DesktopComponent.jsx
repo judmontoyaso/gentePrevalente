@@ -6,6 +6,7 @@ import { Formik } from "formik";
 import { useQuery, gql } from "@apollo/client";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { black } from "tailwindcss/colors";
 
 const QUERY = gql`
   query Query {
@@ -29,8 +30,9 @@ const DesktopComponent = () => {
   const [disableNext, setDisableNext] = useState(false);
   const [disable, setDisable] = useState(false);
   const [colorLeft, setColorLeft] = useState();
-  const [color, setColor] = useState();
-  const [onehabilita, setOnehabilita] = useState(true);
+  const [color, setColor] = useState("black");
+  const [estado, setEstado] = useState("por confirmar");
+  const [estadoAceptado, setEstadoAceptado] = useState();
 
   //defimir el limite para la paginacion
 
@@ -79,7 +81,8 @@ const DesktopComponent = () => {
 
   const obtenerEmpresas = x;
   console.log(count);
-  console.log(limit);
+  console.log(obtenerEmpresas);
+  console.log(obtenerEmpresas.estado);
 
   return (
     <div>
@@ -105,17 +108,27 @@ const DesktopComponent = () => {
 
               <Formik
                 enableReinitialize
-                initialValues={obtenerEmpresas}
-                onSubmit={(valores) => {
-                  console.log("enviando");
+                initialValues={{
+                  nombre: obtenerEmpresas.nombre,
+                  tipoID: obtenerEmpresas.tipoID,
+                  identificacion: obtenerEmpresas.identificacion,
+                  numeroEmpleados: obtenerEmpresas.numeroEmpleados,
+                  logo: obtenerEmpresas.logo,
+                  estado: estado,
+                }}
+                onSubmit={async (valores) => {
+                  console.log();
+                  console.log(valores);
+                  console.log(valores.estado);
                 }}
               >
                 {(props) => {
                   return (
-                    <form onSubmit={props.handleSubmit}>
+                    <form onSubmit={props.handleSubmit} id="Formulario">
                       <section className="gestionar">
                         <button
                           className=" flex border-solid m-10 mt-3  border-1 border-gray-500 rounded-lg  p-2 cursor-pointer botonesGestion"
+                          onClick={() => setEstado("Aceptada")}
                           type="submit"
                         >
                           <i class="fas fa-check-circle fa-2x ml-1 check"></i>{" "}
@@ -125,7 +138,7 @@ const DesktopComponent = () => {
                         </button>
                         <button
                           className=" flex border-solid m-10 mt-3  border-1 border-gray-500 rounded-lg  p-2 cursor-pointer botonesGestion"
-                          type="submit"
+                          onClick={() => setEstado("No Aceptada")}
                         >
                           <i className="fas fa-times-circle text-red-600 fa-2x ml-1"></i>{" "}
                           <span className="flex font-black ml-1">
@@ -135,6 +148,7 @@ const DesktopComponent = () => {
                       </section>
 
                       <section className="contenedorLogoEmpresa flex mt-20 m-auto ">
+                        {" "}
                         <Image
                           src={props.values.logo}
                           alt="logo"
@@ -213,10 +227,10 @@ const DesktopComponent = () => {
                           <input
                             className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500"
                             id="estado"
-                            type="string"
                             value={props.values.estado}
                             onChange={props.handleChange}
                             onBlur={props.handleBlur}
+                            type="hidden"
                           ></input>
                         </section>
                       </section>
@@ -224,9 +238,8 @@ const DesktopComponent = () => {
                   );
                 }}
               </Formik>
-              <section>
-                <Modals />
-              </section>
+              <section></section>
+              <Modals></Modals>
             </section>
           </section>
         </section>
