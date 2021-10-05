@@ -1,14 +1,18 @@
 import { Cards } from "components/Cards";
 import Link from "next/link";
 import { Layout } from "components/Layout";
-import Modals from "components/Modals";
+
 
 
 export default function Home() {
+  //Prueba consulta
+  
+  
+
   return (
     <div>
       <Layout>
-        <div >
+        <div>
           <section>
             <h1 className="text-center text-3xl font-bold text-gray-700">
               Gente Prevalente
@@ -42,14 +46,6 @@ export default function Home() {
             </ul>
           </section>
         </div>
-
-
-        
-      
-
-
-
-
       </Layout>
     </div>
   );

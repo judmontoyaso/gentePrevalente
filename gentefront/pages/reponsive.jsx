@@ -1,10 +1,16 @@
 import * as React from "react";
 import MobileComponent from "./MobileComponent";
 import DesktopComponent from "./DesktopComponent";
+import { useFormik, Formik } from "formik";
+import { useQuery, useMutation, gql } from "@apollo/client";
+
+
 
 const viewportContext = React.createContext({});
 
 const ViewportProvider = ({ children }) => {
+
+  
   //condicional para cuando no se carga window
   if (typeof window == "undefined") return fetch;
 
@@ -40,10 +46,18 @@ const MyComponent = () => {
 };
 
 const reponsive = () => {
+
+  
+
+
   return (
     <div>
       <ViewportProvider>
+      
         <MyComponent />
+
+        
+   
       </ViewportProvider>
     </div>
   );
