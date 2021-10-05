@@ -5,6 +5,7 @@ import Modals from "components/Modals";
 import { mostrarInformacion } from "components/mostrarInformacion";
 import { Formik, useFormik } from "formik";
 import { useQuery, gql } from "@apollo/client";
+import Image from "next/image";
 
 const QUERY = gql`
   query Query {
@@ -72,11 +73,9 @@ const DesktopComponent = () => {
   //Tamaño del arreglo
   const tamaño = data.obtenerEmpresas.length;
 
-  let y = 1;
+  let y = 0;
 
   let x = data.obtenerEmpresas[y];
-
-  ;
 
   const obtenerEmpresas = x;
 
@@ -114,7 +113,14 @@ const DesktopComponent = () => {
                   console.log(props);
                   return (
                     <form onSubmit={props.handleSubmit}>
-                      <section className="contenedorLogoEmpresa flex mt-20 m-auto "></section>
+                      <section className="contenedorLogoEmpresa flex mt-20 m-auto ">
+                        <Image
+                          src={props.values.logo}
+                          alt="logo"
+                          width={250}
+                          height={80}
+                        />
+                      </section>
 
                       {/* formulario input */}
 
