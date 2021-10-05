@@ -2,8 +2,7 @@ import React from "react";
 import { Layout } from "components/Layout";
 import Link from "next/link";
 import Modals from "components/Modals";
-import { mostrarInformacion } from "components/mostrarInformacion";
-import { Formik, useFormik } from "formik";
+import { Formik } from "formik";
 import { useQuery, gql } from "@apollo/client";
 import Image from "next/image";
 import { useState, useEffect } from "react";
@@ -29,6 +28,8 @@ const DesktopComponent = () => {
   const [limit, setlimit] = useState(0);
   const [disableNext, setDisableNext] = useState(false);
   const [disable, setDisable] = useState(false);
+  const [colorLeft, setColorLeft] = useState();
+  const [color, setColor] = useState();
   const [onehabilita, setOnehabilita] = useState(true);
 
   //defimir el limite para la paginacion
@@ -43,18 +44,22 @@ const DesktopComponent = () => {
   useEffect(() => {
     if (count == 0) {
       setDisable(true);
+      setColorLeft("text-gray-500");
     }
 
     if (count != 0) {
       setDisable(false);
+      setColorLeft("Black");
     }
 
     if (count == limit - 1) {
       setDisableNext(true);
+      setColor("text-gray-500");
     }
 
     if (count != limit - 1) {
       setDisableNext(false);
+      setColor("Black");
     }
   });
 
@@ -230,7 +235,7 @@ const DesktopComponent = () => {
 
         <section className="botonesControl align-middle justify-center flex">
           <button disabled={disable} onClick={() => setCount(count - 1)}>
-            <i className="fas fa-chevron-circle-left text-gray-500 fa-2x">-</i>
+            <i className={`fas fa-chevron-circle-left ${colorLeft} fa-2x`}>-</i>
           </button>
           <span className="text-gray-500 p-8 text-2xl">
             {" "}
@@ -242,7 +247,7 @@ const DesktopComponent = () => {
               setCount(count + 1);
             }}
           >
-            <i className="fas fa-chevron-circle-right fa-2x">+</i>
+            <i className={`fas fa-chevron-circle-right ${color} fa-2x`}>+</i>
           </button>
         </section>
       </Layout>
