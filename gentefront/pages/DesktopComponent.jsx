@@ -6,10 +6,11 @@ import { Formik } from "formik";
 import { useQuery, gql, useMutation } from "@apollo/client";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import PaginaStock from "./PaginaStock";
 
 const QUERY = gql`
-  query Query {
-    obtenerEmpresas {
+  query Query($obtenerEmpresaEstadoEstado: String!) {
+    obtenerEmpresaEstado(estado: $obtenerEmpresaEstadoEstado) {
       nombre
       razonSocial
       tipoID
@@ -79,27 +80,32 @@ const DesktopComponent = () => {
 
   //Mutation actualizar
 
-  const [actualizarEmpresa] = useMutation(ACTUALIZAR);
+  const [actualizarEmpresa] = useMutation(ACTUALIZAR, {
+
+    //utilizar refetch para volver a realizar la consulta despues de la mutacion
+    refetchQueries: [QUERY],
+  });
 
   //Query  para consulta
-  const { data, loading } = useQuery(QUERY);
+  const { data, loading, refetch } = useQuery(QUERY, {
+    variables: {
+      obtenerEmpresaEstadoEstado: "Sin gestionar",
+    },
+  });
   if (loading) return "wait";
 
-  console.log(data.obtenerEmpresas[0]);
+  console.log(data.obtenerEmpresaEstado[0]);
 
   //Tamaño del arreglo para manejar la paginación
-  const tamaño = data.obtenerEmpresas.length;
+  const tamaño = data.obtenerEmpresaEstado.length;
 
   //Definir valores para mostrar una posicion especifica del arreglo de datos
   let y = count;
 
-  let x = data.obtenerEmpresas[y];
+  let x = data.obtenerEmpresaEstado[y];
 
   const obtenerEmpresas = x;
-  console.log(count);
-  console.log(obtenerEmpresas);
-  console.log(obtenerEmpresas.estado);
-
+  if (typeof obtenerEmpresas == "undefined") return <PaginaStock></PaginaStock>;
   return (
     <div>
       <Layout>
@@ -142,10 +148,11 @@ const DesktopComponent = () => {
                   try {
                     const { data } = await actualizarEmpresa({
                       variables: {
-                        actualizarEmpresaIdentificacion:  identificacion ,
+                        actualizarEmpresaIdentificacion: identificacion,
                         actualizarEmpresaInput: { estado },
                       },
                     });
+
                     console.log(data);
                   } catch (error) {
                     console.log(error);
