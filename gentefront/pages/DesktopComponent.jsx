@@ -6,6 +6,7 @@ import { mostrarInformacion } from "components/mostrarInformacion";
 import { Formik, useFormik } from "formik";
 import { useQuery, gql } from "@apollo/client";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 const QUERY = gql`
   query Query {
@@ -22,46 +23,39 @@ const QUERY = gql`
 `;
 
 const DesktopComponent = () => {
-  const formik = useFormik({
-    initialValues: {
-      nombre: "",
-      identificacion: "",
-      razonSocial: "",
-      tipoID: "",
-      numeroEmpleados: "",
-      logo: "",
-    },
+  //contador de posiciones en el arreglo
 
-    onSubmit: async (valores) => {
-      const {
-        nombre,
-        razonSocial,
-        tipoID,
-        identificacion,
-        numeroEmpleados,
-        logo,
-      } = valores;
+  const [count, setCount] = useState(0);
+  const [limit, setlimit] = useState(0);
+  const [disableNext, setDisableNext] = useState(false);
+  const [disable, setDisable] = useState(false);
+  const [onehabilita, setOnehabilita] = useState(true);
 
-      try {
-        const { data } = await nuevaEmpresa({
-          variables: {
-            nuevaEmpresaInput: {
-              nombre,
-              razonSocial,
-              tipoID,
-              identificacion,
-              numeroEmpleados,
-              logo,
-            },
-          },
-        });
-        console.log(valores);
-      } catch (error) {
-        console.log(error);
-      }
-      console.log("enviando");
-      console.log(valores);
-    },
+  //defimir el limite para la paginacion
+
+  useEffect(() => {
+    if (count == 0) {
+      setlimit(tamaño);
+    }
+  });
+
+  //Use effect para desactivar o activar botones de paginacion
+  useEffect(() => {
+    if (count == 0) {
+      setDisable(true);
+    }
+
+    if (count != 0) {
+      setDisable(false);
+    }
+
+    if (count == limit - 1) {
+      setDisableNext(true);
+    }
+
+    if (count != limit - 1) {
+      setDisableNext(false);
+    }
   });
 
   //Query  para consulta
@@ -70,14 +64,17 @@ const DesktopComponent = () => {
 
   console.log(data.obtenerEmpresas[0]);
 
-  //Tamaño del arreglo
+  //Tamaño del arreglo para manejar la paginación
   const tamaño = data.obtenerEmpresas.length;
 
-  let y = 0;
+  //Definir valores para mostrar una posicion especifica del arreglo de datos
+  let y = count;
 
   let x = data.obtenerEmpresas[y];
 
   const obtenerEmpresas = x;
+  console.log(count);
+  console.log(limit);
 
   return (
     <div>
@@ -98,21 +95,40 @@ const DesktopComponent = () => {
         <section className="contenedor mt-20 m-auto flex flex-col">
           <section className="formContenedor p- m-auto">
             <section className="contenedorDatos  m-auto">
-              <section className="gestionar">
-                <section className=" flex border-solid m-10 mt-3  border-1 border-gray-500 rounded-lg  p-2 cursor-pointer botonesGestion">
-                  <i class="fas fa-check-circle fa-2x ml-1 check"></i>{" "}
-                  <span className="flex font-black ml-1">Aprobar Empresa</span>
-                </section>
-                <section className=" flex border-solid m-10 mt-3  border-1 border-gray-500 rounded-lg  p-2 cursor-pointer botonesGestion">
-                  <i className="fas fa-times-circle text-red-600 fa-2x ml-1"></i>{" "}
-                  <span className="flex font-black ml-1">Rechazar Empresa</span>
-                </section>
-              </section>
-              <Formik enableReinitialize initialValues={obtenerEmpresas}>
+              {/* 
+              componente formik para manejar valores en el formulario */}
+
+              <Formik
+                enableReinitialize
+                initialValues={obtenerEmpresas}
+                onSubmit={(valores) => {
+                  console.log("enviando");
+                }}
+              >
                 {(props) => {
-                  console.log(props);
                   return (
                     <form onSubmit={props.handleSubmit}>
+                      <section className="gestionar">
+                        <button
+                          className=" flex border-solid m-10 mt-3  border-1 border-gray-500 rounded-lg  p-2 cursor-pointer botonesGestion"
+                          type="submit"
+                        >
+                          <i class="fas fa-check-circle fa-2x ml-1 check"></i>{" "}
+                          <span className="flex font-black ml-1">
+                            Aprobar Empresa
+                          </span>
+                        </button>
+                        <button
+                          className=" flex border-solid m-10 mt-3  border-1 border-gray-500 rounded-lg  p-2 cursor-pointer botonesGestion"
+                          type="submit"
+                        >
+                          <i className="fas fa-times-circle text-red-600 fa-2x ml-1"></i>{" "}
+                          <span className="flex font-black ml-1">
+                            Rechazar Empresa
+                          </span>
+                        </button>
+                      </section>
+
                       <section className="contenedorLogoEmpresa flex mt-20 m-auto ">
                         <Image
                           src={props.values.logo}
@@ -188,26 +204,46 @@ const DesktopComponent = () => {
                             onBlur={props.handleBlur}
                           ></input>
                         </section>
+                        <section>
+                          <input
+                            className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500"
+                            id="estado"
+                            type="string"
+                            value={props.values.estado}
+                            onChange={props.handleChange}
+                            onBlur={props.handleBlur}
+                          ></input>
+                        </section>
                       </section>
                     </form>
                   );
                 }}
               </Formik>
-
-              <Modals></Modals>
+              <section>
+                <Modals />
+              </section>
             </section>
           </section>
+        </section>
 
-          <section className="botonesControl m-auto">
-            <i className="fas fa-chevron-circle-left text-gray-500 fa-2x"></i>
+        {/* Botones de navegacion paginacion formulario */}
 
-            <span className="text-gray-500 p-8 text-2xl">
-              {" "}
-              Empresa {y + 1} de {tamaño} pendiente de aprobación
-            </span>
-
-            <i className="fas fa-chevron-circle-right fa-2x"></i>
-          </section>
+        <section className="botonesControl align-middle justify-center flex">
+          <button disabled={disable} onClick={() => setCount(count - 1)}>
+            <i className="fas fa-chevron-circle-left text-gray-500 fa-2x">-</i>
+          </button>
+          <span className="text-gray-500 p-8 text-2xl">
+            {" "}
+            Empresa {count + 1} de {tamaño} pendiente de aprobación
+          </span>
+          <button
+            disabled={disableNext}
+            onClick={() => {
+              setCount(count + 1);
+            }}
+          >
+            <i className="fas fa-chevron-circle-right fa-2x">+</i>
+          </button>
         </section>
       </Layout>
     </div>
