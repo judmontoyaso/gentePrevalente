@@ -3,10 +3,9 @@ import { Layout } from "components/Layout";
 import Link from "next/link";
 import Modals from "components/Modals";
 import { Formik } from "formik";
-import { useQuery, gql } from "@apollo/client";
+import { useQuery, gql, useMutation } from "@apollo/client";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { black } from "tailwindcss/colors";
 
 const QUERY = gql`
   query Query {
@@ -22,8 +21,22 @@ const QUERY = gql`
   }
 `;
 
+const ACTUALIZAR = gql`
+  mutation Mutation(
+    $actualizarEmpresaIdentificacion: Int!
+    $actualizarEmpresaInput: EstadoInput
+  ) {
+    actualizarEmpresa(
+      identificacion: $actualizarEmpresaIdentificacion
+      input: $actualizarEmpresaInput
+    ) {
+      nombre
+    }
+  }
+`;
+
 const DesktopComponent = () => {
-  //contador de posiciones en el arreglo
+  //estados contador de posiciones en el arreglo, color de flechas next y prev, activar o desactivar botones next y prev y estado de empresa
 
   const [count, setCount] = useState(0);
   const [limit, setlimit] = useState(0);
@@ -32,7 +45,6 @@ const DesktopComponent = () => {
   const [colorLeft, setColorLeft] = useState();
   const [color, setColor] = useState("black");
   const [estado, setEstado] = useState("por confirmar");
-  const [estadoAceptado, setEstadoAceptado] = useState();
 
   //defimir el limite para la paginacion
 
@@ -64,6 +76,10 @@ const DesktopComponent = () => {
       setColor("Black");
     }
   });
+
+  //Mutation actualizar
+
+  const [actualizarEmpresa] = useMutation(ACTUALIZAR);
 
   //Query  para consulta
   const { data, loading } = useQuery(QUERY);
@@ -104,12 +120,14 @@ const DesktopComponent = () => {
           <section className="formContenedor p- m-auto">
             <section className="contenedorDatos  m-auto">
               {/* 
-              componente formik para manejar valores en el formulario */}
-
+              componente formik para manejar valores en el formulario, se usa enablereinitialize para reinicar los datos en el formulario
+              a medida que lo reuiera, se definen como valores iniciales los valores que vienen en el arreglo pero se
+              crea un usestate para cambiar el valor del estado con el boton */}
               <Formik
                 enableReinitialize
                 initialValues={{
                   nombre: obtenerEmpresas.nombre,
+                  razonSocial: obtenerEmpresas.razonSocial,
                   tipoID: obtenerEmpresas.tipoID,
                   identificacion: obtenerEmpresas.identificacion,
                   numeroEmpleados: obtenerEmpresas.numeroEmpleados,
@@ -117,14 +135,27 @@ const DesktopComponent = () => {
                   estado: estado,
                 }}
                 onSubmit={async (valores) => {
-                  console.log();
                   console.log(valores);
                   console.log(valores.estado);
+                  const { identificacion, estado } = valores;
+
+                  try {
+                    const { data } = await actualizarEmpresa({
+                      variables: {
+                        actualizarEmpresaIdentificacion:  identificacion ,
+                        actualizarEmpresaInput: { estado },
+                      },
+                    });
+                    console.log(data);
+                  } catch (error) {
+                    console.log(error);
+                  }
                 }}
               >
                 {(props) => {
                   return (
                     <form onSubmit={props.handleSubmit} id="Formulario">
+                      {/*  Botones de aceptar y rechazar */}
                       <section className="gestionar">
                         <button
                           className=" flex border-solid m-10 mt-3  border-1 border-gray-500 rounded-lg  p-2 cursor-pointer botonesGestion"
@@ -146,7 +177,7 @@ const DesktopComponent = () => {
                           </span>
                         </button>
                       </section>
-
+                      {/* contenedor de logo de empresas */}
                       <section className="contenedorLogoEmpresa flex mt-20 m-auto ">
                         {" "}
                         <Image
@@ -203,7 +234,7 @@ const DesktopComponent = () => {
                           <input
                             className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500"
                             id="identificacion"
-                            type="number"
+                            type="string"
                             value={props.values.identificacion}
                             onChange={props.handleChange}
                             onBlur={props.handleBlur}
