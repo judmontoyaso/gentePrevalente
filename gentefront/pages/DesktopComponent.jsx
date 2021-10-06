@@ -1,5 +1,5 @@
 import React from "react";
-import  {LayoutDot}  from "components/LayoutDot";
+import { LayoutDot } from "components/LayoutDot";
 import Link from "next/link";
 import Modals from "components/Modals";
 import { Formik } from "formik";
@@ -82,7 +82,6 @@ const DesktopComponent = () => {
   //Mutation actualizar
 
   const [actualizarEmpresa] = useMutation(ACTUALIZAR, {
-
     //utilizar refetch para volver a realizar la consulta despues de la mutacion
     refetchQueries: [QUERY],
   });
@@ -93,7 +92,7 @@ const DesktopComponent = () => {
       obtenerEmpresaEstadoEstado: "Sin gestionar",
     },
   });
-  if (loading) return "wait";
+  if (loading) return "Consultado en la base de datos...";
 
   console.log(data.obtenerEmpresaEstado[0]);
 
@@ -108,9 +107,9 @@ const DesktopComponent = () => {
   const obtenerEmpresas = x;
 
   //Retorno de pagina sin datos
-  if (typeof obtenerEmpresas == "undefined") return <DescktopStock></DescktopStock>
+  if (typeof obtenerEmpresas == "undefined")
+    return <DescktopStock></DescktopStock>;
 
-  
   return (
     <div>
       <LayoutDot>
@@ -174,7 +173,7 @@ const DesktopComponent = () => {
                           onClick={() => setEstado("Aceptada")}
                           type="submit"
                         >
-                          <i class="fas fa-check-circle fa-2x ml-1 check"></i>{" "}
+                          <i className="fas fa-check-circle fa-2x ml-1 check"></i>{" "}
                           <span className="flex font-black ml-1">
                             Aprobar Empresa
                           </span>
@@ -208,7 +207,7 @@ const DesktopComponent = () => {
                             Nombre de la empresa
                           </label>
                           <input
-                            className="border-opacity-50 m-10 mt-3 border-b-2 border-gray-500"
+                            className="border-opacity-50 m-10 mt-3 border-b-2 border-gray-500 font-bold"
                             id="nombre"
                             value={props.values.nombre}
                             onChange={props.handleChange}
@@ -220,7 +219,7 @@ const DesktopComponent = () => {
                             Razón social
                           </label>
                           <input
-                            className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500"
+                            className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500 font-bold"
                             id="razonSocial"
                             value={props.values.razonSocial}
                             onChange={props.handleChange}
@@ -232,7 +231,7 @@ const DesktopComponent = () => {
                             Tipo de identificación
                           </label>
                           <input
-                            className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500"
+                            className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500 font-bold"
                             id="tipoID"
                             value={props.values.tipoID}
                             onChange={props.handleChange}
@@ -244,7 +243,7 @@ const DesktopComponent = () => {
                             Identificación
                           </label>
                           <input
-                            className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500"
+                            className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500 font-bold"
                             id="identificacion"
                             type="string"
                             value={props.values.identificacion}
@@ -258,7 +257,7 @@ const DesktopComponent = () => {
                             # de empleados
                           </label>
                           <input
-                            className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500"
+                            className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500 font-bold"
                             id="numeroEmpleados"
                             type="string"
                             value={props.values.numeroEmpleados}
@@ -268,7 +267,7 @@ const DesktopComponent = () => {
                         </section>
                         <section>
                           <input
-                            className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500"
+                            className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500 font-bold"
                             id="estado"
                             value={props.values.estado}
                             onChange={props.handleChange}

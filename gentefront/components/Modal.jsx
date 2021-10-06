@@ -9,7 +9,7 @@ const Modal = ({ children, isOpen, closeModal }) => {
           className="modal-container rounded-3xl lip"
           onClick={handleModalContainerClick}
         >
-          <button class="modal-close" onClick={closeModal}>
+          <button className="modal-close" onClick={closeModal}>
             X
           </button>
           {children}

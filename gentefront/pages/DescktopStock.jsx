@@ -61,21 +61,14 @@ const DescktopStock = () => {
               <form id="Formulario">
                 {/*  Botones de aceptar y rechazar */}
                 <section className="gestionar">
-                  <button
-                    className=" flex border-solid m-10 mt-3  border-1 border-gray-500 rounded-lg  p-2 cursor-pointer botonesGestion"
-                    onClick={() => setEstado("Aceptada")}
-                    type="submit"
-                  >
-                    <i class="fas fa-check-circle fa-2x ml-1 check"></i>{" "}
+                  <button className=" flex border-solid m-10 mt-3  border-1 border-gray-500 rounded-lg  p-2 cursor-pointer botonesGestion">
+                    <i className="fas fa-check-circle fa-2x ml-1 text-gray-500"></i>{" "}
                     <span className="flex font-black ml-1">
                       Aprobar Empresa
                     </span>
                   </button>
-                  <button
-                    className=" flex border-solid m-10 mt-3  border-1 border-gray-500 rounded-lg  p-2 cursor-pointer botonesGestion"
-                    onClick={() => setEstado("No Aceptada")}
-                  >
-                    <i className="fas fa-times-circle text-red-600 fa-2x ml-1"></i>{" "}
+                  <button className=" flex border-solid m-10 mt-3  border-1 border-gray-500 rounded-lg  p-2 cursor-pointer botonesGestion">
+                    <i className="fas fa-times-circle text-gray-500 fa-2x ml-1"></i>{" "}
                     <span className="flex font-black ml-1">
                       Rechazar Empresa
                     </span>
@@ -138,12 +131,10 @@ const DescktopStock = () => {
                       type="hidden"
                     ></input>
                   </section>
-                  
                 </section>
               </form>
 
               <section></section>
-              <Modals></Modals>
             </section>
           </section>
         </section>

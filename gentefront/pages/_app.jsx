@@ -4,6 +4,7 @@ import 'styles/stylesMobile.css'
 import  'styles/modales.css'
 import { ApolloProvider } from '@apollo/client'; 
 import client from 'config/apollo';
+import "normalize.css"
 
 
 

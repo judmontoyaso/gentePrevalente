@@ -8,6 +8,15 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import PaginaStock from "./DescktopStock";
 import MobileComponent from "./MobileComponent";
+import { LayoutDot } from "components/LayoutDot";
+import { saveAs } from "file-saver";
+
+const saveFile = () => {
+  saveAs(
+    "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+    "example.pdf"
+  );
+};
 
 const QUERY = gql`
   query Query($obtenerEmpresaEstadoEstado: String!) {
@@ -106,11 +115,12 @@ const MobileStock = () => {
 
   const obtenerEmpresas = x;
   //Retorno de pagina sin datos
-  if (typeof obtenerEmpresas == "undefined") return <MobileComponent></MobileComponent>;
+  if (typeof obtenerEmpresas == "undefined")
+    return <MobileComponent></MobileComponent>;
 
   return (
-    <div>
-      <Layout>
+    <div className="main">
+      <LayoutDot>
         {/* contenedores global, de formulario y de imagen logo*/}
 
         <section className="mt-10 ml-10">
@@ -129,11 +139,13 @@ const MobileStock = () => {
 
           <section className="botonesControl align-middle justify-center flex">
             <button disabled={disable} onClick={() => setCount(count - 1)}>
-              <i className={`fas fa-chevron-circle-left ${colorLeft} fa-2x`}>
+              <i
+                className={`fas fa-chevron-circle-left ${colorLeft} fa-2x align-middle items-center`}
+              >
                 -
               </i>
             </button>
-            <span className="text-gray-500 p-8 text-2xl">
+            <span className="text-gray-500  text-sm align-middle  ">
               {" "}
               Empresa {count + 1} de {tamaño} pendiente de aprobación
             </span>
@@ -207,7 +219,7 @@ const MobileStock = () => {
                         </section>
                         <section>
                           <input
-                            className="border-opacity-50 m-10 mt-3 border-b-2 border-gray-500
+                            className="border-opacity-50 m-10 mt-3 border-b-2 border-gray-500 font-bold
                 "
                             id="nombre"
                             value={props.values.nombre}
@@ -222,7 +234,7 @@ const MobileStock = () => {
                         </section>
                         <section>
                           <input
-                            className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500"
+                            className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500 font-bold"
                             id="razonSocial"
                             value={props.values.razonSocial}
                             onChange={props.handleChange}
@@ -236,7 +248,7 @@ const MobileStock = () => {
                         </section>
                         <section>
                           <input
-                            className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500"
+                            className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500 font-bold"
                             id="tipoID"
                             value={props.values.tipoID}
                             onChange={props.handleChange}
@@ -250,8 +262,8 @@ const MobileStock = () => {
                         </section>
                         <section>
                           <input
-                            className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500"
-                            className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500"
+                            className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500 font-bold"
+                            className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500 font-bold"
                             id="identificacion"
                             type="string"
                             value={props.values.identificacion}
@@ -266,8 +278,8 @@ const MobileStock = () => {
                         </section>
                         <section>
                           <input
-                            className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500"
-                            className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500"
+                            className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500 font-bold"
+                            className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500 font-bold"
                             id="numeroEmpleados"
                             type="string"
                             value={props.values.numeroEmpleados}
@@ -283,7 +295,7 @@ const MobileStock = () => {
                           onClick={() => setEstado("Aceptada")}
                           type="submit"
                         >
-                          <i class="fas fa-check-circle fa-2x ml-1 check"></i>{" "}
+                          <i className="fas fa-check-circle fa-2x ml-1 check"></i>{" "}
                           <span className="flex font-black ml-1">
                             Aprobar Empresa
                           </span>
@@ -308,29 +320,44 @@ const MobileStock = () => {
                 Documentos Cargados
               </h3>
               <section className="items-center  mb-6">
-                <span className="align-middle mr-10">RUT PrevalentWare</span>
-                <i className="fas fa-file-pdf fa-3x text-red-600 align-middle"></i>
+              <button onClick={saveFile}>
+                  <span className="align-middle mr-10">RUT PrevalentWare</span>{" "}
+               
+                  <i className="fas fa-file-pdf fa-3x text-red-600 align-middle"></i>
+                </button>
               </section>
               <section className="items-center mb-6">
-                <span className="align-middle mr-10">RUT PrevalentWare</span>
-                <i className="fas fa-file-pdf fa-3x text-red-600 align-middle"></i>
+              <button onClick={saveFile}>
+                  <span className="align-middle mr-10">RUT PrevalentWare</span>{" "}
+               
+                  <i className="fas fa-file-pdf fa-3x text-red-600 align-middle"></i>
+                </button>
               </section>
               <section className="items-center mb-6">
-                <span className="align-middle mr-10">RUT PrevalentWare</span>
-                <i className="fas fa-file-pdf fa-3x text-red-600 align-middle"></i>
+              <button onClick={saveFile}>
+                  <span className="align-middle mr-10">RUT PrevalentWare</span>{" "}
+               
+                  <i className="fas fa-file-pdf fa-3x text-red-600 align-middle"></i>
+                </button>
               </section>
               <section className="items-center mb-6">
-                <span className="align-middle mr-10">RUT PrevalentWare</span>
-                <i className="fas fa-file-pdf fa-3x text-red-600 align-middle"></i>
+              <button onClick={saveFile}>
+                  <span className="align-middle mr-10">RUT PrevalentWare</span>{" "}
+               
+                  <i className="fas fa-file-pdf fa-3x text-red-600 align-middle"></i>
+                </button>
               </section>
               <section className="items-center mb-6">
-                <span className="align-middle mr-10">RUT PrevalentWare</span>
-                <i className="fas fa-file-pdf fa-3x text-red-600 align-middle"></i>
+              <button onClick={saveFile}>
+                  <span className="align-middle mr-10">RUT PrevalentWare</span>{" "}
+               
+                  <i className="fas fa-file-pdf fa-3x text-red-600 align-middle"></i>
+                </button>
               </section>
             </section>
           </section>
         </section>
-      </Layout>
+      </LayoutDot>
     </div>
   );
 };

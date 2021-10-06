@@ -7,7 +7,7 @@ const MobileComponent = () => (
 
   
 
-  <div className="flex flex-col">
+  <div className="main">
     <Layout>
       {/* contenedores global, de formulario y de imagen logo*/}
 

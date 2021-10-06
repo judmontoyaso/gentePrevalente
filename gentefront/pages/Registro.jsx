@@ -142,7 +142,7 @@ const [nuevaEmpresa] = useMutation (EMPRESA);
       </form>
       <section className="gestionar">
         <section className=" flex border-solid m-10 mt-3  border-1 border-gray-500 rounded-lg  p-2 cursor-pointer botonesGestion">
-          <i class="fas fa-check-circle fa-2x ml-1 check"></i>{" "}
+          <i className="fas fa-check-circle fa-2x ml-1 check"></i>{" "}
           <span className="flex font-black ml-1">Aprobar Empresa</span>
         </section>
         <section className=" flex border-solid m-10 mt-3  border-1 border-gray-500 rounded-lg  p-2 cursor-pointer botonesGestion">

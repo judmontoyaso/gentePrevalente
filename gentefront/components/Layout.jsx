@@ -14,6 +14,7 @@ export const Layout = ({ children }) => {
         <script
           src="https://kit.fontawesome.com/0888d5f4dd.js"
           crossorigin="anonymous"
+          
         ></script>
       </Head>
       <Navbar />
