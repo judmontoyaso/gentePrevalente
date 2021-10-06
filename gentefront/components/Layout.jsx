@@ -1,7 +1,5 @@
 import Head from "next/head";
 import { Navbar } from "components/Navbar";
-import { Cards } from "components/Cards";
-import Link from "next/link";
 
 import React, { Children } from "react";
 

@@ -35,8 +35,6 @@ const resolvers = {
   },
 
   Mutation: {
-
-
     nuevaEmpresa: async (_, { input }) => {
       const { identificacion } = input;
       //Revisar si la empresa esta registrada
@@ -54,34 +52,36 @@ const resolvers = {
         console.log(error);
       }
     },
-    
-    actualizarEmpresa: async (_,{identificacion, input})=>{
-        //Revisar que exista empresa en base de datos
 
-        let empresa = await Empresa.findOne({ identificacion });
+    actualizarEmpresa: async (_, { identificacion, input }) => {
+      //Revisar que exista empresa en base de datos
+
+      let empresa = await Empresa.findOne({ identificacion });
       if (!empresa) {
-        throw new Error("La empresa ya fue registrada");
+        throw new Error("La empresa no se encuentra");
       }
 
       //guardarlo en la base de datos
-      empresa = await Empresa.findOneAndUpdate({identificacion : identificacion}, input, {neew : true});
+      empresa = await Empresa.findOneAndUpdate(
+        { identificacion: identificacion },
+        input,
+        { neew: true }
+      );
 
-      return empresa
-
+      return empresa;
     },
 
-    eliminarEmpresa : async(_,{identificacion})=>{
-        let empresa = await Empresa.findOne({ identificacion });
+    eliminarEmpresa: async (_, { identificacion }) => {
+      let empresa = await Empresa.findOne({ identificacion });
 
       if (!empresa) {
         throw new Error("La empresa no esta registrada");
-    }
-    await Empresa.findOneAndDelete({identificacion : identificacion});
+      }
+      await Empresa.findOneAndDelete({ identificacion: identificacion });
 
-    return "Empresa eliminada";
-
-
-  }
-}}
+      return "Empresa eliminada";
+    },
+  },
+};
 
 module.exports = resolvers;

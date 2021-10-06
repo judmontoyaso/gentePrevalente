@@ -1,7 +1,6 @@
 import Head from "next/head";
 import { NavbarNotificacion } from "components/NavbarNotificacion";
-import { Cards } from "components/Cards";
-import Link from "next/link";
+
 
 import React, { Children } from "react";
 

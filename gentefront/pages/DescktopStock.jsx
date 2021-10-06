@@ -1,12 +1,8 @@
 import React from "react";
 import { Layout } from "components/Layout";
 import Link from "next/link";
-import Modals from "components/Modals";
-import { Formik } from "formik";
-import { useQuery, gql, useMutation } from "@apollo/client";
-import Image from "next/image";
 import { useState, useEffect } from "react";
-import Formulario from "./Registro";
+
 
 const DescktopStock = () => {
   //estados contador de posiciones en el arreglo, color de flechas next y prev, activar o desactivar botones next y prev y estado de empresa

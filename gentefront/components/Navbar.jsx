@@ -51,8 +51,8 @@ export const Navbar = () => {
         >
           <div className="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start  flex flex-col lg:h-auto">
             <Link href="/">
-              <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold lg:mr-20 hover:bg-yellow-600 hover:text-white ">
-                <i className="fas fa-search mr-4"></i>Buscar
+              <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white  lg:mr-20 hover:bg-yellow-600 hover:text-white ">
+                <i className="fas fa-search mr-4"></i>Buscar...
               </a>
             </Link>
             <Link href="/">
@@ -62,18 +62,18 @@ export const Navbar = () => {
               </a>
             </Link>
             <Link href="/">
-              <a className="lg:mr-8 lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-yellow-600 hover:text-white">
+              <a className="lg:mr-8 lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white items-center justify-center hover:bg-yellow-600 hover:text-white">
                 <i className="fas fa-suitcase mr-4"></i>Empleo
                 <i className="fas fa-chevron-down ml-4"></i>
               </a>
             </Link>
             <Link href="/">
-              <a className="lg:mr-8 lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-yellow-600 hover:text-white">
+              <a className="lg:mr-8 lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white items-center justify-center hover:bg-yellow-600 hover:text-white">
                 <i className="fas fa-clipboard-list mr-4"></i> Mi CV
               </a>
             </Link>
             <Link href="/">
-              <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-yellow-600 hover:text-white">
+              <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white items-center justify-center hover:bg-yellow-600 hover:text-white">
                 <i className="fas fa-circle mr-4 fa-2x text-gray-500"></i>
                 Usuario
                 <i className="fas fa-chevron-down ml-4"></i>

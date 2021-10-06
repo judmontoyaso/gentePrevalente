@@ -1,8 +1,5 @@
 import * as React from "react";
-import MobileComponent from "./MobileComponent";
 import DesktopComponent from "./DesktopComponent";
-import { useFormik, Formik } from "formik";
-import { useQuery, useMutation, gql } from "@apollo/client";
 import StockMobile from "./MobileStock";
 
 

@@ -1,22 +1,12 @@
 import React from "react";
-import { Layout } from "components/Layout";
 import Link from "next/link";
-import Modals from "components/Modals";
 import { Formik } from "formik";
 import { useQuery, gql, useMutation } from "@apollo/client";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import PaginaStock from "./DescktopStock";
 import MobileComponent from "./MobileComponent";
 import { LayoutDot } from "components/LayoutDot";
 import { saveAs } from "file-saver";
-
-const saveFile = () => {
-  saveAs(
-    "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
-    "example.pdf"
-  );
-};
 
 const QUERY = gql`
   query Query($obtenerEmpresaEstadoEstado: String!) {
@@ -57,7 +47,14 @@ const MobileStock = () => {
   const [color, setColor] = useState("black");
   const [estado, setEstado] = useState("por confirmar");
 
-  //defimir el limite para la paginacion
+  const saveFile = () => {
+    saveAs(
+      "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+      obtenerEmpresas.nombre
+    );
+  };
+
+  //definir el limite para la paginacion
 
   useEffect(() => {
     if (count == 0) {
@@ -320,37 +317,42 @@ const MobileStock = () => {
                 Documentos Cargados
               </h3>
               <section className="items-center  mb-6">
-              <button onClick={saveFile}>
-                  <span className="align-middle mr-10">RUT PrevalentWare</span>{" "}
-               
+                <button onClick={saveFile}>
+                  <span className="align-middle mr-10">
+                    RUT {`${obtenerEmpresas.nombre}`}
+                  </span>{" "}
                   <i className="fas fa-file-pdf fa-3x text-red-600 align-middle"></i>
                 </button>
               </section>
               <section className="items-center mb-6">
-              <button onClick={saveFile}>
-                  <span className="align-middle mr-10">RUT PrevalentWare</span>{" "}
-               
+                <button onClick={saveFile}>
+                  <span className="align-middle mr-10">
+                    Logo{`${obtenerEmpresas.nombre}`}
+                  </span>{" "}
                   <i className="fas fa-file-pdf fa-3x text-red-600 align-middle"></i>
                 </button>
               </section>
               <section className="items-center mb-6">
-              <button onClick={saveFile}>
-                  <span className="align-middle mr-10">RUT PrevalentWare</span>{" "}
-               
+                <button onClick={saveFile}>
+                  <span className="align-middle mr-10">
+                    Acta de constitución {`${obtenerEmpresas.nombre}`}
+                  </span>{" "}
                   <i className="fas fa-file-pdf fa-3x text-red-600 align-middle"></i>
                 </button>
               </section>
               <section className="items-center mb-6">
-              <button onClick={saveFile}>
-                  <span className="align-middle mr-10">RUT PrevalentWare</span>{" "}
-               
+                <button onClick={saveFile}>
+                  <span className="align-middle mr-10">
+                    Camara de comercio {`${obtenerEmpresas.nombre}`}
+                  </span>{" "}
                   <i className="fas fa-file-pdf fa-3x text-red-600 align-middle"></i>
                 </button>
               </section>
               <section className="items-center mb-6">
-              <button onClick={saveFile}>
-                  <span className="align-middle mr-10">RUT PrevalentWare</span>{" "}
-               
+                <button onClick={saveFile}>
+                  <span className="align-middle mr-10">
+                    Ortro documento {`${obtenerEmpresas.nombre}`}
+                  </span>{" "}
                   <i className="fas fa-file-pdf fa-3x text-red-600 align-middle"></i>
                 </button>
               </section>

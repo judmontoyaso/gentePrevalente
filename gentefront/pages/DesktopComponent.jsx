@@ -6,7 +6,6 @@ import { Formik } from "formik";
 import { useQuery, gql, useMutation } from "@apollo/client";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import PaginaStock from "./DescktopStock";
 import DescktopStock from "./DescktopStock";
 
 const QUERY = gql`
