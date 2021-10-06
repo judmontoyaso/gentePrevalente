@@ -24,14 +24,14 @@ const MobileComponent = () => (
 
       <section className="contenedorMobile mt-20 m-auto flex flex-col">
         <section className="botonesControl m-auto">
-          <i className="fas fa-chevron-circle-left text-gray-500 fa-2x"></i>
+          <i className="fas fa-chevron-circle-left text-gray-500 fa-2x absolute"></i>
 
           <span className="text-gray-500 p-8 text-2xl">
             {" "}
             No tiene empresas pendientes de aprobacion
           </span>
 
-          <i className="fas fa-chevron-circle-right text-gray-500 fa-2x"></i>
+          <i className="fas fa-chevron-circle-right text-gray-500 fa-2x absolute"></i>
         </section>
         <section className="formContenedorMobile items-center">
           <form className="flex items-center flex-col">
@@ -79,31 +79,7 @@ const MobileComponent = () => (
 
           {/* Documentos Adjuntos */}
 
-          <section className="flex items-center flex-col">
-            <h3 className="text-black font-extrabold mb-10 mt-10">
-              Documentos Cargados
-            </h3>
-            <section className="items-center  mb-6">
-              <span className="align-middle mr-10">RUT PrevalentWare</span>
-              <i className="fas fa-file-pdf fa-3x text-red-600 align-middle"></i>
-            </section>
-            <section className="items-center mb-6">
-              <span className="align-middle mr-10">RUT PrevalentWare</span>
-              <i className="fas fa-file-pdf fa-3x text-red-600 align-middle"></i>
-            </section>
-            <section className="items-center mb-6">
-              <span className="align-middle mr-10">RUT PrevalentWare</span>
-              <i className="fas fa-file-pdf fa-3x text-red-600 align-middle"></i>
-            </section>
-            <section className="items-center mb-6">
-              <span className="align-middle mr-10">RUT PrevalentWare</span>
-              <i className="fas fa-file-pdf fa-3x text-red-600 align-middle"></i>
-            </section>
-            <section className="items-center mb-6">
-              <span className="align-middle mr-10">RUT PrevalentWare</span>
-              <i className="fas fa-file-pdf fa-3x text-red-600 align-middle"></i>
-            </section>
-          </section>
+    
         </section>
       </section>
 

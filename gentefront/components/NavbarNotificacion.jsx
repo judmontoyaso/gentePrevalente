@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from "media/logo.png";
 import { useState } from "react";
-import { useQuery,gql } from "@apollo/client";
+import { useQuery, gql } from "@apollo/client";
 
 const QUERY = gql`
   query Query($obtenerEmpresaEstadoEstado: String!) {

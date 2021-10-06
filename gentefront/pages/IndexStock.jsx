@@ -1,7 +1,7 @@
 import { Cards } from "components/Cards";
 import Link from "next/link";
 import { Layout } from "components/Layout";
-import { useQuery, gql } from "@apollo/client";
+
 
 export default function IndexStock() {
   return (

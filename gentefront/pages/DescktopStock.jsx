@@ -3,7 +3,6 @@ import { Layout } from "components/Layout";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
-
 const DescktopStock = () => {
   //estados contador de posiciones en el arreglo, color de flechas next y prev, activar o desactivar botones next y prev y estado de empresa
 
@@ -108,7 +107,7 @@ const DescktopStock = () => {
                     <input
                       className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500"
                       id="identificacion"
-                      type="string"
+                      type="String"
                     ></input>
                   </section>
 
@@ -139,7 +138,9 @@ const DescktopStock = () => {
 
         <section className="botonesControl align-middle justify-center flex">
           <button disabled={disable} onClick={() => setCount(count - 1)}>
-            <i className={`fas fa-chevron-circle-left ${colorLeft} fa-2x`}>-</i>
+            <i className={`fas fa-chevron-circle-left text-gray-500 fa-2x`}>
+              -
+            </i>
           </button>
           <span className="text-gray-500 p-8 text-2xl">
             {" "}
@@ -151,7 +152,9 @@ const DescktopStock = () => {
               setCount(count + 1);
             }}
           >
-            <i className={`fas fa-chevron-circle-right ${color} fa-2x`}>+</i>
+            <i className={`fas fa-chevron-circle-right text-gray-500 fa-2x`}>
+              +
+            </i>
           </button>
         </section>
       </Layout>
