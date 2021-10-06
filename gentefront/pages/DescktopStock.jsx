@@ -6,9 +6,9 @@ import { Formik } from "formik";
 import { useQuery, gql, useMutation } from "@apollo/client";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import Formulario from "./Formulario";
+import Formulario from "./Registro";
 
-const PaginaStock = () => {
+const DescktopStock = () => {
   //estados contador de posiciones en el arreglo, color de flechas next y prev, activar o desactivar botones next y prev y estado de empresa
 
   const [count, setCount] = useState(0);
@@ -21,8 +21,6 @@ const PaginaStock = () => {
 
   //defimir el limite para la paginacion
 
-  
-
   //Use effect para desactivar o activar botones de paginacion
   useEffect(() => {
     if (count == 0) {
@@ -30,8 +28,7 @@ const PaginaStock = () => {
       setColorLeft("text-gray-500");
     }
 
-
-    if (count == limit ) {
+    if (count == limit) {
       setDisableNext(true);
       setColor("text-gray-500");
     }
@@ -141,6 +138,7 @@ const PaginaStock = () => {
                       type="hidden"
                     ></input>
                   </section>
+                  
                 </section>
               </form>
 
@@ -174,4 +172,4 @@ const PaginaStock = () => {
   );
 };
 
-export default PaginaStock;
+export default DescktopStock;

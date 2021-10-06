@@ -3,24 +3,25 @@ import React from "react";
 export const Cards = ({ nombreEmpresa, mensaje, logo }) => {
   return (
     <div>
-      <li className="breedCard">
+      <li className="breedCard mb-20 ">
         <div>
-          <i className={`${logo}  fa-5x text-white p-8 rounded-lg cuadro`}></i>
+          <i className={`${logo}  fa-3x text-white p-5 rounded-lg cuadro`}></i>
         </div>
         <div className="contenedorImagen">
-          <span className="m-auto font-bold text-4xl tituloCard">
+          <span className="  ml-3 font-bold text-2xl tituloCard">
             {nombreEmpresa}
           </span>
+          <section>
+            <ul className="barra">
+              <i className="fas fa-clock fa-2x text-gray-400  align-middle">
+                {" "}
+                <span className="p-2 text-gray-400 text-lg mb-36">
+                  {mensaje}
+                </span>
+              </i>
+            </ul>
+          </section>
         </div>
-
-        <ul className="barra">
-          <li>
-            <i className="fas fa-clock fa-3x text-gray-400  align-middle"></i>
-            <span className="p-10 text-gray-400 text-2xl align-middle">
-              {mensaje}
-            </span>
-          </li>
-        </ul>
       </li>
     </div>
   );

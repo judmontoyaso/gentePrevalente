@@ -17,7 +17,7 @@ mutation Mutation($nuevaEmpresaInput: empresaInput) {
 
 }`
 
-const Formulario = () => {
+const Registro = () => {
 
 
 const [nuevaEmpresa] = useMutation (EMPRESA);
@@ -154,4 +154,4 @@ const [nuevaEmpresa] = useMutation (EMPRESA);
   );
 };
 
-export default Formulario;
+export default Registro;

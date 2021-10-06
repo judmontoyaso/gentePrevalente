@@ -3,9 +3,10 @@ import MobileComponent from "./MobileComponent";
 import DesktopComponent from "./DesktopComponent";
 import { useFormik, Formik } from "formik";
 import { useQuery, useMutation, gql } from "@apollo/client";
+import StockMobile from "./MobileStock";
 
 
-
+//Utilizar estado para conocer el tamaño de la pantalla y definir cual componente mostrar, si el de escritorio o movil
 const viewportContext = React.createContext({});
 
 const ViewportProvider = ({ children }) => {
@@ -42,7 +43,7 @@ const MyComponent = () => {
   const { width } = useViewport();
   const breakpoint = 1200;
 
-  return width < breakpoint ? <MobileComponent /> : <DesktopComponent />;
+  return width < breakpoint ? <StockMobile /> : <DesktopComponent />;
 };
 
 const reponsive = () => {

@@ -3,6 +3,10 @@ import { Layout } from "components/Layout";
 import Link from "next/link";
 
 const MobileComponent = () => (
+
+
+  
+
   <div className="flex flex-col">
     <Layout>
       {/* contenedores global, de formulario y de imagen logo*/}
@@ -24,10 +28,10 @@ const MobileComponent = () => (
 
           <span className="text-gray-500 p-8 text-2xl">
             {" "}
-            Empresa 1 de 2 pendiente de aprobación
+            No tiene empresas pendientes de aprobacion
           </span>
 
-          <i className="fas fa-chevron-circle-right fa-2x"></i>
+          <i className="fas fa-chevron-circle-right text-gray-500 fa-2x"></i>
         </section>
         <section className="formContenedorMobile items-center">
           <form className="flex items-center flex-col">

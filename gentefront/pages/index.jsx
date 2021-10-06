@@ -1,11 +1,15 @@
 import { Cards } from "components/Cards";
 import Link from "next/link";
-import { Layout } from "components/Layout";
+import { LayoutDot } from "components/LayoutDot";
 import { useQuery, gql } from "@apollo/client";
+import IndexStock from "./IndexStock";
+import { useState, useEffect } from "react";
+
+//Se realiza consulta  para manejar las notificaciones
 
 const QUERY = gql`
-  query Query {
-    obtenerEmpresas {
+  query Query($obtenerEmpresaEstadoEstado: String!) {
+    obtenerEmpresaEstado(estado: $obtenerEmpresaEstadoEstado) {
       nombre
       razonSocial
       tipoID
@@ -18,23 +22,73 @@ const QUERY = gql`
 `;
 
 export default function Home() {
+  const [count, setCount] = useState(0);
+  const [limit, setlimit] = useState(0);
+  const [disableNext, setDisableNext] = useState(false);
+  const [disable, setDisable] = useState(false);
+  const [colorLeft, setColorLeft] = useState();
+  const [color, setColor] = useState("black");
+  const [estado, setEstado] = useState("por confirmar");
+
+  //defimir el limite para la paginacion
+
+  useEffect(() => {
+    if (count == 0) {
+      setlimit(tamaño);
+    }
+  });
+
+  //Use effect para desactivar o activar botones de paginacion
+  useEffect(() => {
+    if (count == 0) {
+      setDisable(true);
+      setColorLeft("text-gray-500");
+    }
+
+    if (count != 0) {
+      setDisable(false);
+      setColorLeft("Black");
+    }
+
+    if (count == limit - 1) {
+      setDisableNext(true);
+      setColor("text-gray-500");
+    }
+
+    if (count != limit - 1) {
+      setDisableNext(false);
+      setColor("Black");
+    }
+  });
   //Prueba consulta
   //Query  para consulta
-  const { data, loading } = useQuery(QUERY);
+
+  //Query  para consulta
+  const { data, loading, refetch } = useQuery(QUERY, {
+    variables: {
+      obtenerEmpresaEstadoEstado: "Sin gestionar",
+    },
+  });
   if (loading) return "wait";
+
   //Tamaño del arreglo para manejar la paginación
-  const tamaño = data.obtenerEmpresas.length;
-  
+  const tamaño = data.obtenerEmpresaEstado.length;
+
+  //Definir valores para mostrar una posicion especifica del arreglo de datos
+  let y = count;
+
+  let x = data.obtenerEmpresaEstado[y];
+
+  const obtenerEmpresas = x;
+  //Retorno de pagina sin datos
+
+  if (typeof obtenerEmpresas == "undefined") return <IndexStock></IndexStock>;
 
   return (
     <div>
-      <Layout>
+      <LayoutDot>
         <div>
           <section>
-            <h1 className="text-center text-3xl font-bold text-gray-700">
-              Gente Prevalente
-            </h1>
-
             <ul className="ulista">
               <Link href="/reponsive">
                 <a>
@@ -63,7 +117,7 @@ export default function Home() {
             </ul>
           </section>
         </div>
-      </Layout>
+      </LayoutDot>
     </div>
   );
 }

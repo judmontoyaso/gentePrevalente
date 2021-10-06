@@ -3,15 +3,57 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from "media/logo.png";
 import { useState } from "react";
+import { useQuery,gql } from "@apollo/client";
+
+const QUERY = gql`
+  query Query($obtenerEmpresaEstadoEstado: String!) {
+    obtenerEmpresaEstado(estado: $obtenerEmpresaEstadoEstado) {
+      nombre
+      razonSocial
+      tipoID
+      identificacion
+      numeroEmpleados
+      logo
+      estado
+    }
+  }
+`;
+
+const ACTUALIZAR = gql`
+  mutation Mutation(
+    $actualizarEmpresaIdentificacion: Int!
+    $actualizarEmpresaInput: EstadoInput
+  ) {
+    actualizarEmpresa(
+      identificacion: $actualizarEmpresaIdentificacion
+      input: $actualizarEmpresaInput
+    ) {
+      nombre
+    }
+  }
+`;
 
 //hook de usestate para activar hamburguer
 
-export const Navbar = () => {
+export const NavbarNotificacion = () => {
   const [active, setActive] = useState(false);
 
   const handleClick = () => {
     setActive(!active);
   };
+
+  //Query  para consulta
+  const { data, loading, refetch } = useQuery(QUERY, {
+    variables: {
+      obtenerEmpresaEstadoEstado: "Sin gestionar",
+    },
+  });
+  if (loading) return "wait";
+
+  console.log(data.obtenerEmpresaEstado[0]);
+
+  //Tamaño del arreglo para manejar la paginación
+  const tamaño = data.obtenerEmpresaEstado.length;
 
   return (
     <>
@@ -58,7 +100,11 @@ export const Navbar = () => {
             <Link href="/">
               <a className="lg:mr-8 lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-yellow-600 hover:text-white">
                 <i className="fas fa-cogs mr-4"></i>Administracion
-                
+                <div className="bg-red-600  w-4 h-4 rounded-full mb-4">
+                  <p className="flex align-middle text-white text-xs font-bold pl-1">
+                    {tamaño}
+                  </p>
+                </div>
               </a>
             </Link>
             <Link href="/">

@@ -1,5 +1,5 @@
 import React from "react";
-import  {LayoutDot}  from "components/LayoutDot";
+import { Layout } from "components/Layout";
 import Link from "next/link";
 import Modals from "components/Modals";
 import { Formik } from "formik";
@@ -7,7 +7,7 @@ import { useQuery, gql, useMutation } from "@apollo/client";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import PaginaStock from "./DescktopStock";
-import DescktopStock from "./DescktopStock";
+import MobileComponent from "./MobileComponent";
 
 const QUERY = gql`
   query Query($obtenerEmpresaEstadoEstado: String!) {
@@ -37,7 +37,7 @@ const ACTUALIZAR = gql`
   }
 `;
 
-const DesktopComponent = () => {
+const MobileStock = () => {
   //estados contador de posiciones en el arreglo, color de flechas next y prev, activar o desactivar botones next y prev y estado de empresa
 
   const [count, setCount] = useState(0);
@@ -82,7 +82,6 @@ const DesktopComponent = () => {
   //Mutation actualizar
 
   const [actualizarEmpresa] = useMutation(ACTUALIZAR, {
-
     //utilizar refetch para volver a realizar la consulta despues de la mutacion
     refetchQueries: [QUERY],
   });
@@ -106,14 +105,12 @@ const DesktopComponent = () => {
   let x = data.obtenerEmpresaEstado[y];
 
   const obtenerEmpresas = x;
-
   //Retorno de pagina sin datos
-  if (typeof obtenerEmpresas == "undefined") return <DescktopStock></DescktopStock>
+  if (typeof obtenerEmpresas == "undefined") return <MobileComponent></MobileComponent>;
 
-  
   return (
     <div>
-      <LayoutDot>
+      <Layout>
         {/* contenedores global, de formulario y de imagen logo*/}
 
         <section className="mt-10 ml-10">
@@ -127,9 +124,31 @@ const DesktopComponent = () => {
           <span className="font-bold text-2xl"> Aprobación de empresas</span>
         </section>
 
-        <section className="contenedor mt-20 m-auto flex flex-col">
-          <section className="formContenedor p- m-auto">
-            <section className="contenedorDatos  m-auto">
+        <section className="contenedorMobile mt-20 m-auto flex flex-col">
+          {/* Botones de navegacion paginacion formulario */}
+
+          <section className="botonesControl align-middle justify-center flex">
+            <button disabled={disable} onClick={() => setCount(count - 1)}>
+              <i className={`fas fa-chevron-circle-left ${colorLeft} fa-2x`}>
+                -
+              </i>
+            </button>
+            <span className="text-gray-500 p-8 text-2xl">
+              {" "}
+              Empresa {count + 1} de {tamaño} pendiente de aprobación
+            </span>
+            <button
+              disabled={disableNext}
+              onClick={() => {
+                setCount(count + 1);
+              }}
+            >
+              <i className={`fas fa-chevron-circle-right ${color} fa-2x`}>+</i>
+            </button>
+          </section>
+
+          <section className="formContenedorMobile  flex flex-col items-center">
+            <section>
               {/* 
               componente formik para manejar valores en el formulario, se usa enablereinitialize para reinicar los datos en el formulario
               a medida que lo reuiera, se definen como valores iniciales los valores que vienen en el arreglo pero se
@@ -167,30 +186,8 @@ const DesktopComponent = () => {
                 {(props) => {
                   return (
                     <form onSubmit={props.handleSubmit} id="Formulario">
-                      {/*  Botones de aceptar y rechazar */}
-                      <section className="gestionar">
-                        <button
-                          className=" flex border-solid m-10 mt-3  border-1 border-gray-500 rounded-lg  p-2 cursor-pointer botonesGestion"
-                          onClick={() => setEstado("Aceptada")}
-                          type="submit"
-                        >
-                          <i class="fas fa-check-circle fa-2x ml-1 check"></i>{" "}
-                          <span className="flex font-black ml-1">
-                            Aprobar Empresa
-                          </span>
-                        </button>
-                        <button
-                          className=" flex border-solid m-10 mt-3  border-1 border-gray-500 rounded-lg  p-2 cursor-pointer botonesGestion"
-                          onClick={() => setEstado("No Aceptada")}
-                        >
-                          <i className="fas fa-times-circle text-red-600 fa-2x ml-1"></i>{" "}
-                          <span className="flex font-black ml-1">
-                            Rechazar Empresa
-                          </span>
-                        </button>
-                      </section>
                       {/* contenedor de logo de empresas */}
-                      <section className="contenedorLogoEmpresa flex mt-20 m-auto ">
+                      <section className="contenedorLogoEmpresaMobile flex mt-20">
                         {" "}
                         <Image
                           src={props.values.logo}
@@ -202,13 +199,16 @@ const DesktopComponent = () => {
 
                       {/* formulario input */}
 
-                      <section className="m-auto grid grid-cols-2 ml-16">
+                      <section className="m-auto flex flex-col">
                         <section>
                           <label className="text-gray-600 m-9">
                             Nombre de la empresa
                           </label>
+                        </section>
+                        <section>
                           <input
-                            className="border-opacity-50 m-10 mt-3 border-b-2 border-gray-500"
+                            className="border-opacity-50 m-10 mt-3 border-b-2 border-gray-500
+                "
                             id="nombre"
                             value={props.values.nombre}
                             onChange={props.handleChange}
@@ -219,6 +219,8 @@ const DesktopComponent = () => {
                           <label className="text-gray-600 m-9">
                             Razón social
                           </label>
+                        </section>
+                        <section>
                           <input
                             className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500"
                             id="razonSocial"
@@ -231,6 +233,8 @@ const DesktopComponent = () => {
                           <label className="text-gray-600 m-9">
                             Tipo de identificación
                           </label>
+                        </section>
+                        <section>
                           <input
                             className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500"
                             id="tipoID"
@@ -243,7 +247,10 @@ const DesktopComponent = () => {
                           <label className="text-gray-600 m-9">
                             Identificación
                           </label>
+                        </section>
+                        <section>
                           <input
+                            className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500"
                             className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500"
                             id="identificacion"
                             type="string"
@@ -252,12 +259,14 @@ const DesktopComponent = () => {
                             onBlur={props.handleBlur}
                           ></input>
                         </section>
-
                         <section>
                           <label className="text-gray-600 m-9">
                             # de empleados
                           </label>
+                        </section>
+                        <section>
                           <input
+                            className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500"
                             className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500"
                             id="numeroEmpleados"
                             type="string"
@@ -266,49 +275,64 @@ const DesktopComponent = () => {
                             onBlur={props.handleBlur}
                           ></input>
                         </section>
-                        <section>
-                          <input
-                            className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500"
-                            id="estado"
-                            value={props.values.estado}
-                            onChange={props.handleChange}
-                            onBlur={props.handleBlur}
-                            type="hidden"
-                          ></input>
-                        </section>
+                      </section>
+                      {/*  Botones de aceptar y rechazar */}
+                      <section className="flex items-center flex-col">
+                        <button
+                          className=" flex border-solid   border-1 border-gray-500 rounded-lg  p-2 cursor-pointer botonesGestionMobile"
+                          onClick={() => setEstado("Aceptada")}
+                          type="submit"
+                        >
+                          <i class="fas fa-check-circle fa-2x ml-1 check"></i>{" "}
+                          <span className="flex font-black ml-1">
+                            Aprobar Empresa
+                          </span>
+                        </button>
+                        <button
+                          className=" flex border-solid m-10 mt-3  border-1 border-gray-500 rounded-lg  p-2 cursor-pointer botonesGestionMobile"
+                          onClick={() => setEstado("No Aceptada")}
+                        >
+                          <i className="fas fa-times-circle text-red-600 fa-2x ml-1"></i>{" "}
+                          <span className="flex font-black ml-1">
+                            Rechazar Empresa
+                          </span>
+                        </button>
                       </section>
                     </form>
                   );
                 }}
               </Formik>
-              <section></section>
-              <Modals></Modals>
+            </section>
+            <section className="flex items-center flex-col descargas -mt-16 -mb-16">
+              <h3 className="text-black font-extrabold mb-10 mt-10">
+                Documentos Cargados
+              </h3>
+              <section className="items-center  mb-6">
+                <span className="align-middle mr-10">RUT PrevalentWare</span>
+                <i className="fas fa-file-pdf fa-3x text-red-600 align-middle"></i>
+              </section>
+              <section className="items-center mb-6">
+                <span className="align-middle mr-10">RUT PrevalentWare</span>
+                <i className="fas fa-file-pdf fa-3x text-red-600 align-middle"></i>
+              </section>
+              <section className="items-center mb-6">
+                <span className="align-middle mr-10">RUT PrevalentWare</span>
+                <i className="fas fa-file-pdf fa-3x text-red-600 align-middle"></i>
+              </section>
+              <section className="items-center mb-6">
+                <span className="align-middle mr-10">RUT PrevalentWare</span>
+                <i className="fas fa-file-pdf fa-3x text-red-600 align-middle"></i>
+              </section>
+              <section className="items-center mb-6">
+                <span className="align-middle mr-10">RUT PrevalentWare</span>
+                <i className="fas fa-file-pdf fa-3x text-red-600 align-middle"></i>
+              </section>
             </section>
           </section>
         </section>
-
-        {/* Botones de navegacion paginacion formulario */}
-
-        <section className="botonesControl align-middle justify-center flex">
-          <button disabled={disable} onClick={() => setCount(count - 1)}>
-            <i className={`fas fa-chevron-circle-left ${colorLeft} fa-2x`}>-</i>
-          </button>
-          <span className="text-gray-500 p-8 text-2xl">
-            {" "}
-            Empresa {count + 1} de {tamaño} pendiente de aprobación
-          </span>
-          <button
-            disabled={disableNext}
-            onClick={() => {
-              setCount(count + 1);
-            }}
-          >
-            <i className={`fas fa-chevron-circle-right ${color} fa-2x`}>+</i>
-          </button>
-        </section>
-      </LayoutDot>
+      </Layout>
     </div>
   );
 };
 
-export default DesktopComponent;
+export default MobileStock;
