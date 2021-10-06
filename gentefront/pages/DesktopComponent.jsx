@@ -24,7 +24,7 @@ const QUERY = gql`
 
 const ACTUALIZAR = gql`
   mutation Mutation(
-    $actualizarEmpresaIdentificacion: Int!
+    $actualizarEmpresaIdentificacion: String!
     $actualizarEmpresaInput: EstadoInput
   ) {
     actualizarEmpresa(
@@ -244,7 +244,7 @@ const DesktopComponent = () => {
                           <input
                             className="border-opacity-50 m-10 mt-3  border-b-2 border-gray-500 font-bold"
                             id="identificacion"
-                            type="string"
+                            type="String"
                             value={props.values.identificacion}
                             onChange={props.handleChange}
                             onBlur={props.handleBlur}

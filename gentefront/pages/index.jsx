@@ -4,6 +4,7 @@ import { LayoutDot } from "components/LayoutDot";
 import { useQuery, gql } from "@apollo/client";
 import IndexStock from "./IndexStock";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 
 //Se realiza consulta  para manejar las notificaciones
 
@@ -28,7 +29,9 @@ export default function Home() {
   const [disable, setDisable] = useState(false);
   const [colorLeft, setColorLeft] = useState();
   const [color, setColor] = useState("black");
-  const [estado, setEstado] = useState("por confirmar");
+
+  const router = useRouter();
+  console.log(router);
 
   //defimir el limite para la paginacion
 
@@ -60,8 +63,7 @@ export default function Home() {
       setColor("Black");
     }
   });
-  //Prueba consulta
-  //Query  para consulta
+  
 
   //Query  para consulta
   const { data, loading, refetch } = useQuery(QUERY, {
@@ -90,7 +92,7 @@ export default function Home() {
         <div>
           <section>
             <ul className="ulista">
-              <Link href="/reponsive">
+              <Link href="/GestionEmpresas">
                 <a>
                   <Cards
                     nombreEmpresa="Solicitud de creacion de empresas"

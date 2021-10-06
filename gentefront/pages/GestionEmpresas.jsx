@@ -12,6 +12,8 @@ const ViewportProvider = ({ children }) => {
   //condicional para cuando no se carga window
   if (typeof window == "undefined") return fetch;
 
+  //conocer el tamaño de la pantalla
+
   const [width, setWidth] = React.useState(window.innerWidth);
   const [height, setHeight] = React.useState(window.innerHeight);
   const handleWindowResize = () => {
@@ -43,7 +45,11 @@ const MyComponent = () => {
   return width < breakpoint ? <StockMobile /> : <DesktopComponent />;
 };
 
-const reponsive = () => {
+
+
+
+//Cargar componente condicional
+const GestionEmpresas = () => {
 
   
 
@@ -61,4 +67,4 @@ const reponsive = () => {
   );
 };
 
-export default reponsive;
+export default GestionEmpresas;
