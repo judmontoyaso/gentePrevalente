@@ -17,7 +17,7 @@ const EmpresasSchema = mongoose.Schema({
     trim: true
   },
   identificacion: {
-    type: Number,
+    type: String,
     required: true,
     unique: true,
     trim: true
